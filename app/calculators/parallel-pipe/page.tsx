@@ -392,10 +392,10 @@ export default function ParallelPipeCalculator() {
           <div>
             <p className="font-semibold mb-2">Conductance Method</p>
             <div className="p-3 bg-gray-100 dark:bg-gray-700 rounded font-mono space-y-1">
-              <div>Q_i = C_i × √(hf)                            (branch flow)</div>
-              <div>C_i = A_i × √(2g D_i / (f_i L_i))           (conductance)</div>
-              <div>hf  = (Q / ΣC_i)²                            (solve for hf)</div>
-              <div>Q_i = C_i × Q / ΣC_i                         (branch flow split)</div>
+              <div>Qᵢ = Cᵢ × √(hf)                              (branch flow)</div>
+              <div>Cᵢ = Aᵢ × √(2g Dᵢ / (fᵢ Lᵢ))                 (conductance)</div>
+              <div>hf  = (Q / ΣCᵢ)²                              (solve for hf)</div>
+              <div>Qᵢ = Cᵢ × Q / ΣCᵢ                             (branch flow split)</div>
             </div>
           </div>
           <div>
@@ -434,7 +434,7 @@ export default function ParallelPipeCalculator() {
               </table>
             </div>
           </div>
-          <p>Flow distributes so that head loss is identical across all branches. A branch with a larger diameter or shorter length carries a disproportionately larger share because its conductance scales roughly as D^{2.5}/√L.</p>
+          <p>Flow distributes so that head loss is identical across all branches. A branch with a larger diameter or shorter length carries a disproportionately larger share because its conductance scales roughly as D^2.5/√L.</p>
         </div>
       </Card>
 
