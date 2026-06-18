@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { GlobalSearch, useGlobalSearch } from "./GlobalSearch";
@@ -251,9 +252,9 @@ export function NavBar() {
             <Link
               href="/"
               onClick={() => setMobileOpen(false)}
-              className="text-base font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex-shrink-0"
+              className="flex items-center flex-shrink-0 opacity-90 hover:opacity-100 transition-opacity"
             >
-              Fluids <span className="text-blue-600 dark:text-blue-400">Pad</span>
+              <Image src="/logo.png" alt="Fluidspad" width={600} height={146} className="h-7 w-auto" priority />
             </Link>
 
             {/* Desktop nav — mega items then simple links */}
