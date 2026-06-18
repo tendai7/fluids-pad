@@ -254,7 +254,8 @@ export function NavBar() {
               onClick={() => setMobileOpen(false)}
               className="flex items-center flex-shrink-0 opacity-90 hover:opacity-100 transition-opacity"
             >
-              <Image src="/logo.png" alt="Fluidspad" width={600} height={146} className="h-7 w-auto" priority />
+              <Image src="/logo.png" alt="Fluidspad" width={600} height={146} className="h-7 w-auto dark:hidden" priority />
+              <Image src="/logo-dark.png" alt="Fluidspad" width={600} height={145} className="hidden h-7 w-auto dark:block" priority />
             </Link>
 
             {/* Desktop nav — mega items then simple links */}

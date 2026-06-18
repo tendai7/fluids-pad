@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE),
 
   title: {
-    default: "Fluids Pad — Engineering Calculators for South African Engineers",
+    default: "Fluids Pad — Free Engineering Calculators for Fluid Mechanics",
     template: "%s | Fluids Pad",
   },
 
   description:
-    "Free engineering calculators for South African engineers and students. Pipe flow, slurry pipelines, mine ventilation, pressure vessels, control valves, stormwater (SANRAL IDF), ASME B31.3 pipe wall thickness, and 60+ more tools. ECSA-relevant. ZAR cost estimation included.",
+    "Free engineering calculators for fluid mechanics — pipe flow, pumps, heat transfer, compressible flow, and 60+ more tools, for engineers and students everywhere. Plus South Africa-specific tools: SANRAL stormwater, mine ventilation, ECSA-relevant standards, and ZAR cost estimation.",
 
   keywords: [
     "fluid mechanics calculator",
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     locale: "en_ZA",
     url: BASE,
     siteName: "Fluids Pad",
-    title: "Fluids Pad — Engineering Calculators for South African Engineers",
+    title: "Fluids Pad — Free Engineering Calculators for Fluid Mechanics",
     description:
-      "60+ free engineering calculators: pipe flow, slurry pipelines, mine ventilation, pressure vessels, ASME B31.3, control valves, stormwater SANRAL IDF, and more. Built for SA engineers.",
+      "60+ free calculators for engineers and students — pipe flow, pumps, heat transfer, compressible flow, and more. Plus South Africa-specific tools: SANRAL stormwater, mine ventilation, ECSA-relevant standards, and ZAR cost estimation.",
     images: [
       {
         url: "/og-image.png",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fluids Pad — Engineering Calculators",
     description:
-      "60+ free calculators for South African engineers — pipe flow, slurry, mine ventilation, pressure vessels, stormwater, and more.",
+      "60+ free calculators for engineers and students — pipe flow, pumps, heat transfer, compressible flow, and more. Plus South Africa-specific tools like mine ventilation and stormwater design.",
     images: ["/og-image.png"],
   },
 
@@ -101,7 +101,7 @@ const jsonLd = {
       url: BASE,
       name: "Fluids Pad",
       description:
-        "Free engineering calculators for fluid mechanics — pipe flow, slurry pipelines, mine ventilation, pressure vessels, and more. Built for South African engineers.",
+        "Free engineering calculators for fluid mechanics — pipe flow, slurry pipelines, mine ventilation, pressure vessels, and more, for engineers and students everywhere. Includes South Africa-specific tools.",
       inLanguage: "en-ZA",
       potentialAction: {
         "@type": "SearchAction",
@@ -139,7 +139,7 @@ const jsonLd = {
       ],
       audience: {
         "@type": "Audience",
-        audienceType: "Engineers and engineering students in South Africa",
+        audienceType: "Engineers and engineering students",
       },
     },
     {
