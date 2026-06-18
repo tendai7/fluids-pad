@@ -1,0 +1,321 @@
+# Fluid Mechanics Fundamentals: Questions & Answers
+
+## 1. BASIC DEFINITIONS & CONCEPTS
+
+### Q1: What is fluid mechanics?
+**A:** Fluid mechanics is the study of fluid behavior (liquids, gases, blood, and plasmas) at rest and in motion. It encompasses:
+- **Fluid Statics:** Study of fluids at rest
+- **Fluid Dynamics:** Study of fluids in motion
+- Applications: Mechanical engineering, chemical engineering, biological systems, astrophysics
+
+### Q2: What are the three basic principles of fluid mechanics?
+**A:** 
+1. **Continuity Equation** (Mass Conservation)
+2. **Momentum Principle** (Momentum Conservation)
+3. **Energy Equation** (Energy Conservation)
+
+### Q3: Define a fluid. What distinguishes it from a solid?
+**A:** A fluid is a substance that cannot resist a shearing stress when at rest. Distinguishing features:
+- **Solids:** Resist both normal and shearing stresses; have definite shape and volume
+- **Liquids:** Resist normal stress; take shape of container; volume relatively constant
+- **Gases:** Resist normal stress; expand to fill container; compressible
+- **Defining property:** Fluids deform continuously under shearing stress
+
+### Q4: What is an ideal fluid?
+**A:** An ideal fluid is one that:
+- Obeys Newton's law of viscosity
+- Is frictionless (zero viscosity)
+- Is incompressible (constant density)
+- Note: No real fluid is truly ideal, but approximation useful for analysis
+
+---
+
+## 2. FLUID PROPERTIES
+
+### Q5: Define density and specific gravity. What are the typical units?
+**A:**
+- **Density (ρ):** Mass per unit volume
+  - Units: kg/m³ (SI) or slugs/ft³ (US customary)
+  - Water at 4°C: 1000 kg/m³ (reference standard)
+  
+- **Specific Gravity (s):** Ratio of density of substance to density of water
+  - Dimensionless quantity
+  - Formula: s = ρ_substance / ρ_water
+  - Example: Mercury has s ≈ 13.6 (13.6 times denser than water)
+
+### Q6: What is kinematic viscosity? How does it differ from dynamic viscosity?
+**A:**
+- **Dynamic Viscosity (μ):** Measure of a fluid's resistance to flow under shear stress
+  - Units: Pa·s (Pascal-seconds) or poise (1 Pa·s = 10 poise)
+  - Symbol: μ or η
+  
+- **Kinematic Viscosity (ν):** Ratio of dynamic viscosity to density
+  - Formula: ν = μ / ρ
+  - Units: m²/s or stoke (1 m²/s = 10⁴ stoke)
+  - Physical significance: Describes how quickly viscosity diffuses
+
+### Q7: How does viscosity of gases and liquids vary with temperature?
+**A:**
+- **Liquids:** Viscosity DECREASES with increase in temperature
+  - Reason: Increased molecular activity reduces intermolecular cohesion
+  - Example: Honey flows faster when heated
+  
+- **Gases:** Viscosity INCREASES with increase in temperature
+  - Reason: Increased molecular motion increases momentum exchange
+  - Explanation: Gas molecules interact more vigorously at higher temperature
+
+### Q8: What is surface tension? Give examples of its effects.
+**A:**
+- **Definition:** Force per unit length acting on the surface of a liquid, causing it to behave like an elastic membrane
+- **Units:** N/m (Newtons per meter) or dyne/cm
+- **Cause:** Unbalanced intermolecular forces at liquid-gas interface
+- **Examples:**
+  - Water droplets form spheres (minimum surface area)
+  - Capillary rise in narrow tubes
+  - Insects can walk on water
+  - Formation of bubbles and foam
+
+### Q9: What is vapor pressure? Why is it important in fluid mechanics?
+**A:**
+- **Definition:** Pressure exerted by a vapor in equilibrium with its liquid at a given temperature
+- **Importance in fluid mechanics:**
+  - Cavitation: When local pressure drops below vapor pressure, bubbles form and collapse
+  - Causes damage to pumps and hydraulic structures
+  - Limits maximum suction height of pumps
+  - Critical in design of marine propellers and turbines
+
+### Q10: Define compressibility and bulk modulus.
+**A:**
+- **Compressibility:** Measure of how much a substance's volume changes under pressure
+  - Higher compressibility = easier to compress
+  
+- **Bulk Modulus (K):** Inverse of compressibility
+  - Definition: Ratio of pressure change to fractional volume change
+  - Formula: K = -ΔP / (ΔV/V)
+  - Units: Pa (Pascals)
+  - For water: K ≈ 2.2 × 10⁹ Pa (relatively incompressible)
+  - For air: K ≈ 1.01 × 10⁵ Pa (very compressible)
+
+---
+
+## 3. FLUID CLASSIFICATION
+
+### Q11: Classify fluids based on viscosity behavior.
+**A:**
+- **Newtonian Fluids:** Follow Newton's law of viscosity (constant viscosity)
+  - Examples: Water, oil, air, most common fluids
+  - Relationship: τ = μ(du/dy)
+  
+- **Non-Newtonian Fluids:** Viscosity changes with shear rate
+  - **Pseudoplastic (Shear-thinning):** Viscosity decreases with shear rate
+    - Examples: Paint, ketchup, blood, polymer solutions
+    - Advantage: Flow easier at high shear rates
+    
+  - **Dilatant (Shear-thickening):** Viscosity increases with shear rate
+    - Examples: Sand-water mixture, oobleck, quicksand
+    - Behavior: Becomes more rigid under stress
+    
+  - **Bingham Plastic:** Requires threshold stress before flowing
+    - Examples: Toothpaste, mud, sewage sludge
+    - Behavior: Solid until stress exceeds yield stress
+
+### Q12: What is a scalar quantity in fluid mechanics?
+**A:** A scalar quantity has only magnitude, no direction.
+
+**Examples of scalar quantities:**
+- **Pressure (P):** Force per unit area (same in all directions at a point)
+- **Density (ρ):** Mass per unit volume
+- **Temperature (T):** Measure of thermal energy
+- **Velocity magnitude (speed):** Magnitude of velocity vector
+- **Viscosity (μ):** Measure of resistance to flow
+
+**Note:** Vector quantities have both magnitude and direction:
+- Velocity, acceleration, force, displacement
+
+---
+
+## 4. PRESSURE & HYDROSTATICS
+
+### Q13: State Pascal's Law. What are its applications?
+**A:**
+- **Pascal's Law:** Pressure applied to an enclosed fluid is transmitted undiminished in all directions and to all surfaces of the containing vessel
+
+**Applications:**
+1. **Hydraulic systems** (car brakes, lifts, presses)
+2. **Pressure transducers**
+3. **Fluid power transmission**
+4. **Hydraulic press:** Small input force creates large output force (F₁/A₁ = F₂/A₂)
+5. **Dams and pressure vessels:** Pressure acts equally in all directions
+
+### Q14: What is hydrostatic pressure? How does it vary with depth?
+**A:**
+- **Definition:** Pressure at a point within a stationary fluid due to the weight of fluid above it
+- **Formula:** P = ρgh
+  - ρ = density of fluid
+  - g = acceleration due to gravity
+  - h = depth below surface
+  
+- **Variation with depth:**
+  - Increases linearly with depth
+  - Independent of container shape (paradox: same pressure at same depth in different containers)
+  - For water: Pressure increases by 1 atm (≈101.3 kPa) for every 10 m depth
+
+### Q15: What is pressure head?
+**A:**
+- **Definition:** Height of a column of fluid that would produce the same pressure
+- **Formula:** h = P / (ρg)
+- **Units:** meters of fluid (m H₂O, m Hg, etc.)
+- **Example:** 
+  - Atmospheric pressure at sea level: 101.3 kPa = 10.33 m H₂O = 760 mm Hg
+  - Useful for expressing pressure in terms of column height
+
+---
+
+## 5. ARCHIMEDES' PRINCIPLE & BUOYANCY
+
+### Q16: State Archimedes' Principle.
+**A:** The buoyant force on an object immersed in a fluid is equal to the weight of the fluid displaced by the object, acting upward through the center of buoyancy.
+
+**Mathematical expression:**
+- Buoyant Force (F_B) = ρ_fluid × V_displaced × g
+- F_B = Weight of fluid displaced
+
+**Applications:**
+- Ship floating: Weight = Buoyant force
+- Submarines: Adjust ballast to control buoyancy
+- Helium balloons: Rise because buoyant force > weight
+- Hydrometer: Measures specific gravity by float depth
+
+### Q17: Under what conditions does an object float, sink, or remain suspended?
+**A:**
+- **Float:** Weight < Buoyant force (Object density < Fluid density)
+- **Sink:** Weight > Buoyant force (Object density > Fluid density)
+- **Suspend (Neutral buoyancy):** Weight = Buoyant force (Object density = Fluid density)
+
+**Condition for floating:**
+- ρ_object × V_total < ρ_fluid × V_submerged
+
+---
+
+## 6. MANOMETERS & PRESSURE MEASUREMENT
+
+### Q18: What is a manometer? Describe different types.
+**A:**
+- **Definition:** Device using liquid column to measure pressure difference
+
+**Types:**
+
+1. **Simple Manometer (U-tube):**
+   - Measures gauge pressure
+   - One end open to atmosphere, other to system
+   - Pressure difference: ΔP = ρgh (where h = height difference)
+
+2. **Differential Manometer:**
+   - Measures pressure difference between two points
+   - Both ends connected to different pressure sources
+   - ΔP = ρ_manometer × g × (h₁ - h₂)
+
+3. **Inclined Manometer:**
+   - More sensitive than vertical U-tube
+   - Used for small pressure differences
+   - Manometer tube at angle to horizontal
+
+4. **Micromanometer:**
+   - Extremely sensitive
+   - Can measure very small pressure differences
+
+---
+
+## 7. REYNOLDS NUMBER & FLOW CLASSIFICATION
+
+### Q19: What is Reynolds number? What is its significance?
+**A:**
+- **Definition:** Dimensionless number comparing inertial forces to viscous forces
+- **Formula:** Re = ρVD/μ = VD/ν
+  - V = velocity
+  - D = characteristic length (pipe diameter)
+  - μ = dynamic viscosity
+  - ν = kinematic viscosity
+
+- **Significance:** Determines type of flow (laminar vs turbulent)
+
+### Q20: Classify flow based on Reynolds number.
+**A:**
+- **Laminar Flow:** Re < 2,300 (for pipe flow)
+  - Smooth, orderly motion
+  - Fluid moves in parallel layers
+  - No mixing between layers
+  - Velocity profile parabolic
+  
+- **Transitional Flow:** 2,300 < Re < 4,000
+  - Flow intermittently changes between laminar and turbulent
+  
+- **Turbulent Flow:** Re > 4,000
+  - Chaotic, irregular motion
+  - Eddies and vortices present
+  - Significant mixing between layers
+  - Velocity profile more uniform
+  - Higher pressure drop than laminar
+
+---
+
+## 8. TYPES OF FLUID FLOW
+
+### Q21: Define and distinguish between steady and unsteady flow.
+**A:**
+- **Steady Flow:** Flow properties at any given point do NOT change with time
+  - ∂(properties)/∂t = 0
+  - Example: Constant water flow from a tap
+  
+- **Unsteady Flow:** Flow properties at a point change with time
+  - ∂(properties)/∂t ≠ 0
+  - Example: Starting a pump, closing a valve, tidal flows
+
+### Q22: Define uniform and non-uniform flow.
+**A:**
+- **Uniform Flow:** Velocity is the same at all points in the flow field at a given instant
+  - Example: Flow in long straight pipe with constant diameter
+  
+- **Non-uniform Flow:** Velocity varies from point to point in the flow field
+  - Example: Flow around a sphere, flow in expanding pipe
+
+### Q23: Define rotational and irrotational flow.
+**A:**
+- **Irrotational Flow:** Fluid particles do NOT rotate about their own axes
+  - Vorticity = 0
+  - Curl of velocity vector = 0
+  - Example: Flow around a smooth sphere, potential flow
+  
+- **Rotational Flow:** Fluid particles rotate about their own axes
+  - Vorticity ≠ 0
+  - Example: Flow with boundary layers, wake flows
+
+### Q24: What is one-dimensional, two-dimensional, and three-dimensional flow?
+**A:**
+- **One-dimensional (1D) Flow:** Properties depend on one spatial coordinate only
+  - Example: Fully developed pipe flow (depends only on radius)
+  
+- **Two-dimensional (2D) Flow:** Properties depend on two spatial coordinates
+  - Example: Flow between parallel plates, flow around cylinder
+  
+- **Three-dimensional (3D) Flow:** Properties depend on all three spatial coordinates
+  - Example: Real flows around most objects
+
+---
+
+## ANSWER KEY REFERENCE
+
+Source: Compiled from MIT OpenCourseWare, Sanfoundry fluid mechanics MCQs, UC Berkeley ME 106, and established textbooks (Munson, Kundu, White).
+
+**Difficulty Levels:**
+- Q1-Q10: Introductory (suitable for beginners)
+- Q11-Q15: Intermediate (foundation level)
+- Q16-Q24: Intermediate-Advanced (competitive exam level)
+
+**Next Topics to Study:**
+- Continuity Equation
+- Bernoulli's Equation
+- Momentum Equation
+- Navier-Stokes Equations
+- Boundary Layers
+- Pipe Flow and Open Channel Flow

@@ -1,0 +1,354 @@
+# FLUID MECHANICS - QUICK REFERENCE FORMULA SHEET
+
+---
+
+## 1. FUNDAMENTAL DEFINITIONS
+
+### Density & Specific Gravity
+- **Density:** ρ = m/V (kg/m³)
+- **Specific Gravity:** s = ρ_fluid / ρ_water = (dimensionless)
+- **Water at 4°C:** ρ = 1000 kg/m³ (reference)
+
+### Viscosity
+- **Dynamic Viscosity:** τ = μ(du/dy) (Pa·s or N·s/m²)
+- **Kinematic Viscosity:** ν = μ/ρ (m²/s)
+- **Unit Conversions:** 1 Pa·s = 10 poise; 1 m²/s = 10⁴ stoke
+
+### Bulk Modulus & Compressibility
+- **Bulk Modulus:** K = -ΔP/(ΔV/V) = ρ(dP/dρ) (Pa)
+- **Speed of Sound:** a = √(K/ρ) = √(γRT) for gases
+- **Water:** K ≈ 2.2 × 10⁹ Pa; **Air:** K ≈ 1.01 × 10⁵ Pa
+
+### Surface Tension
+- **Surface Tension:** σ (N/m)
+- **Capillary Rise:** h = (4σ cos θ)/(ρgD)
+- **Pressure Jump (Bubble):** ΔP = 4σ/D
+
+---
+
+## 2. FLUID STATICS
+
+### Pressure Variation with Depth
+- **Hydrostatic Pressure:** P = P_atm + ρgh
+- **Pressure Head:** h = P/(ρg) (meters of fluid)
+- **Gauge Pressure:** P_gauge = P_absolute - P_atm
+
+### Manometer Equations
+- **Simple U-tube:** P₁ + ρgh₁ = P₂ + ρgh₂
+- **Pressure Difference:** ΔP = ρg(h₁ - h₂)
+- **For Multiple Liquids:** Account for each liquid separately
+
+### Hydrostatic Force on Surfaces
+- **Total Force:** F = P_c × A = ρg(h_c) × A
+  - h_c = depth of centroid
+  - A = area of surface
+  
+- **Center of Pressure:** h_p = h_c + I_g/(A × h_c)
+  - I_g = second moment about centroid
+  - Always below centroid (h_p > h_c)
+
+### Archimedes' Principle
+- **Buoyant Force:** F_B = ρ_fluid × V_displaced × g
+- **For Floating Bodies:** Weight = Buoyant Force
+- **Metacentric Height:** GM = I/V (stability measure)
+
+---
+
+## 3. CONTINUITY EQUATION
+
+### Incompressible Flow
+- **Continuity:** Q = A₁V₁ = A₂V₂ = constant
+- **Volumetric Flow Rate:** Q = A × V (m³/s)
+- **Mass Flow Rate:** ṁ = ρ × Q (kg/s)
+
+### Compressible Flow
+- **Mass Conservation:** ρ₁A₁V₁ = ρ₂A₂V₂ = ṁ (constant)
+- **Mach Number:** M = V/a (determines compressibility effects)
+
+### Control Volume Continuity
+- **Steady Flow:** Σ(ṁ_in) = Σ(ṁ_out)
+- **∫∫(ρV·dA) = 0** over entire control surface
+
+---
+
+## 4. BERNOULLI'S EQUATION
+
+### Ideal Flow (No Losses)
+- **Along Streamline:** P₁/ρg + V₁²/2g + z₁ = P₂/ρg + V₂²/2g + z₂
+- **In Meters of Fluid:** P/ρg (pressure head), V²/2g (velocity head), z (elevation head)
+- **Alternative Form:** P/ρ + V²/2 + gz = constant (energy per unit mass)
+
+### Real Flow (With Losses)
+- **Modified:** P₁/ρg + V₁²/2g + z₁ = P₂/ρg + V₂²/2g + z₂ + h_L
+- **Head Loss:** h_L = friction loss + minor losses (m)
+
+### Special Cases
+- **Horizontal Pipe:** P₁/ρ + V₁²/2 = P₂/ρ + V₂²/2
+- **At Rest (V=0):** P₁/ρg + z₁ = P₂/ρg + z₂ (hydrostatic)
+- **Tank Discharge:** V = √(2gh) (Torricelli's law)
+
+---
+
+## 5. MOMENTUM EQUATION
+
+### Control Volume Momentum
+- **Steady Flow:** ΣF_ext = Σ(ṁV)_out - Σ(ṁV)_in
+- **Component Form:** F_x = ṁ(V₂ₓ - V₁ₓ)
+- **Force on Pipe:** Include pressure forces on boundaries
+
+### Common Applications
+- **Jet Force on Plate:** F = ρAV² (perpendicular impact)
+- **Force on Bend:** F = ṁ|V₂ - V₁| (vector difference)
+- **Nozzle Thrust:** F = ρA₁V₁(V₂ - V₁)
+
+### Reynolds Transport Theorem
+- **d/dt∫∫∫CV(ρβ)dV + ∫∫CS(ρβV·n)dA = ΣQ**
+
+---
+
+## 6. ENERGY EQUATION
+
+### First Law of Thermodynamics (Flow)
+- **Per Unit Mass:** P₁/ρ + V₁²/2 + gz₁ + q - w = P₂/ρ + V₂²/2 + gz₂ + losses
+- **Pump:** W_pump = ρgQ(H) (Watts, without losses)
+- **Turbine:** W_turbine = ρgQ(H) (Power extracted)
+
+### Shaft Power
+- **Pump Power:** W_p = ṁg(H_p) = ρgQH_p
+- **Turbine Power:** W_t = ṁg(H_t) = ρgQH_t
+- **Efficiency:** η = W_actual / W_theoretical
+
+---
+
+## 7. DIMENSIONAL ANALYSIS & SIMILARITY
+
+### Dimensionless Numbers
+
+| Number | Definition | Significance |
+|--------|-----------|--------------|
+| **Reynolds (Re)** | ρVD/μ = VD/ν | Inertial/Viscous; flow regime |
+| **Froude (Fr)** | V/√(gD) | Inertial/Gravity; wave effects |
+| **Mach (M)** | V/a | Inertial/Elastic; compressibility |
+| **Drag Coeff (C_D)** | F_D/(ρV²A/2) | Aerodynamic drag |
+| **Lift Coeff (C_L)** | F_L/(ρV²A/2) | Aerodynamic lift |
+| **Pressure Coeff (C_p)** | (P-P_∞)/(ρV²/2) | Pressure distribution |
+| **Strouhal (St)** | fD/V | Oscillation frequency |
+
+### Scaling Laws
+- **Dynamic Similarity:** Same Fr, Re, M for model and prototype
+- **Froude Scaling (gravity effects):** V_m/V_p = √(L_m/L_p)
+- **Reynolds Scaling (viscous effects):** ν_m × L_m/V_m = ν_p × L_p/V_p
+
+---
+
+## 8. PIPE FLOW - FRICTION
+
+### Friction Factor Correlations
+
+**For Laminar Flow (Re < 2,300):**
+- **f = 64/Re** (exact)
+- Independent of pipe roughness
+
+**For Turbulent Flow (Re > 4,000):**
+- **Blasius (smooth pipe, Re < 100,000):** f = 0.316/Re^0.25
+- **Colebrook-White (implicit):** 1/√f = -2 log(ε/3.7D + 2.51/Re√f)
+- **Haaland (explicit):** 1/√f = -1.8 log[(ε/3.7D)^1.11 + 6.9/Re]
+
+**Where:**
+- ε = absolute roughness (m)
+- D = pipe diameter (m)
+
+### Darcy-Weisbach Equation
+- **Pressure Drop:** ΔP = f(L/D)(ρV²/2)
+- **Head Loss:** h_f = f(L/D)(V²/2g)
+- **Alternatively:** Q = -√[2gΔh/f(L/D)]
+
+### Minor Losses
+- **Formula:** h_minor = K(V²/2g) or ΔP_minor = K(ρV²/2)
+- **Loss Coefficients (K):**
+  - Entrance (sharp): K ≈ 0.5
+  - Entrance (rounded): K ≈ 0.1
+  - Exit: K = 1.0
+  - 90° elbow: K ≈ 0.9 (long radius: 0.6)
+  - 45° elbow: K ≈ 0.4
+  - Sudden expansion: K = (1 - A₁/A₂)²
+  - Sudden contraction: K ≈ 0.4
+  - Fully open valve: K ≈ 0 (or 0.2-0.3 for globe)
+
+### Total Head Loss
+- **h_total = h_friction + Σh_minor = f(L/D)(V²/2g) + ΣK(V²/2g)**
+
+---
+
+## 9. REYNOLDS NUMBER & FLOW CLASSIFICATION
+
+### Reynolds Number
+- **Re = ρVD/μ = VD/ν**
+- **D** = characteristic length (pipe diameter, length of object)
+
+### Flow Regimes in Pipes
+- **Laminar:** Re < 2,300
+- **Transitional:** 2,300 < Re < 4,000
+- **Turbulent:** Re > 4,000
+
+### Velocity Profiles
+- **Laminar:** u(r) = 2V_avg(1 - r²/R²) (parabolic)
+- **Turbulent:** u(r) ≈ u_max(1 - r/R)^(1/n), n ≈ 6-10
+
+---
+
+## 10. OPEN CHANNEL FLOW
+
+### Manning's Equation
+- **V = (1/n)R_h^(2/3)S^(1/2)**
+- **Q = (A/n)R_h^(2/3)S^(1/2)**
+- Where:
+  - n = Manning's roughness coefficient (0.01-0.05)
+  - R_h = A/P = hydraulic radius
+  - S = slope (rise/run)
+
+### Critical Flow
+- **Froude Number:** Fr = V/√(gy) = 1 (at critical depth)
+- **Critical Depth (rectangular):** y_c = ∛(q²/g)
+- **Critical Slope:** S_c = (n²g)/(R_h^(1/3))
+
+### Flow Classification
+- **Subcritical:** Fr < 1, y > y_c (slow, deep)
+- **Critical:** Fr = 1, y = y_c
+- **Supercritical:** Fr > 1, y < y_c (fast, shallow)
+
+### Hydraulic Jump
+- **Depth Relation:** y₂/y₁ = 0.5[√(1 + 8Fr₁²) - 1]
+- **Energy Loss:** h_L = (y₂ - y₁)³/(4y₁y₂)
+
+---
+
+## 11. PUMPS & TURBINES
+
+### Pump Head
+- **Total Head:** H_pump = (P₂ - P₁)/ρg + (V₂² - V₁²)/2g + (z₂ - z₁)
+- **Pump Power:** W = ρgQH (ideal, no losses)
+- **Brake Horsepower:** BHP = W/η (with efficiency)
+
+### Specific Speed
+- **N_s = N√Q/H^(3/4)** (metric units)
+- Determines pump type:
+  - N_s < 10: Reciprocating
+  - 10 < N_s < 50: Centrifugal
+  - 50 < N_s < 150: Mixed flow
+  - N_s > 150: Axial flow
+
+### Net Positive Suction Head (NPSH)
+- **Required:** NPSH_req (from pump manufacturer)
+- **Available:** NPSH_a = (P_atm - P_vapor)/ρg - h_f - V_inlet²/2g
+- **Criterion:** NPSH_a > NPSH_req (to prevent cavitation)
+
+---
+
+## 12. DRAG & LIFT
+
+### Drag Force
+- **F_D = C_D × (ρV²/2) × A**
+- **Components:**
+  - Pressure drag (form drag)
+  - Skin friction drag
+  - Wave drag (for free surfaces)
+
+### Lift Force
+- **F_L = C_L × (ρV²/2) × A**
+- For airfoils and curved surfaces
+
+### Typical Drag Coefficients
+- **Smooth sphere:** C_D ≈ 0.47 (Re > 1000)
+- **Cylinder (circular):** C_D ≈ 1.2 (Re = 10⁴)
+- **Flat plate (normal):** C_D ≈ 1.3
+- **Car:** C_D ≈ 0.25-0.35
+- **Streamlined body:** C_D ≈ 0.05-0.1
+
+---
+
+## 13. COMPRESSIBLE FLOW
+
+### Mach Number
+- **M = V/a** (dimensionless)
+- **a = √(γRT)** for ideal gas
+- **Flow:** Incompressible if M < 0.3
+
+### Speed of Sound
+- **a = √(K/ρ) = √(γRT)**
+- **Water:** a ≈ 1480 m/s
+- **Air (20°C):** a ≈ 343 m/s
+
+### Isentropic Relations
+- **T₂/T₁ = (P₂/P₁)^((γ-1)/γ)**
+- **ρ₂/ρ₁ = (P₂/P₁)^(1/γ)**
+
+---
+
+## 14. BOUNDARY LAYER
+
+### Boundary Layer Thickness
+- **Laminar:** δ/x ≈ 5/√Re_x
+- **Turbulent:** δ/x ≈ 0.37/Re_x^(1/5)
+
+### Shear Stress
+- **τ_wall = (1/2)ρV²C_f**
+- **C_f = (drag coeff) for flat plate**
+
+---
+
+## UNIT CONVERSIONS (SI)
+
+| Quantity | SI Unit | Common Conversions |
+|----------|---------|-------------------|
+| Pressure | Pa (N/m²) | 1 atm = 101,325 Pa; 1 bar = 10⁵ Pa |
+| Power | W (J/s) | 1 hp = 746 W; 1 kW = 1000 W |
+| Flow Rate | m³/s | 1 L/s = 10⁻³ m³/s |
+| Viscosity | Pa·s | 1 poise = 0.1 Pa·s |
+| Kin. Visc. | m²/s | 1 stoke = 10⁻⁴ m²/s |
+| Density | kg/m³ | Water = 1000 kg/m³ |
+
+---
+
+## KEY CONSTANTS
+
+- **g = 9.81 m/s²** (gravitational acceleration)
+- **ρ_water = 1000 kg/m³** (at 4°C)
+- **ν_water = 10⁻⁶ m²/s** (at 20°C)
+- **σ_water = 0.073 N/m** (at 20°C)
+- **P_atm = 101,325 Pa** (sea level)
+- **R = 287 J/(kg·K)** (air)
+- **γ = 1.4** (air)
+- **a_water ≈ 1480 m/s**
+- **a_air ≈ 343 m/s** (at 20°C)
+
+---
+
+## COMMON PROBLEM-SOLVING SEQUENCE
+
+1. **Draw diagram** with control volumes, sections, and unknowns
+2. **List assumptions:** steady, incompressible, ideal/real, etc.
+3. **Apply continuity:** A₁V₁ = A₂V₂
+4. **Apply Bernoulli or energy:** P₁/ρg + V₁²/2g + z₁ = P₂/ρg + V₂²/2g + z₂ + h_L
+5. **Apply momentum:** ΣF = ṁ(V₂ - V₁)
+6. **Calculate friction:** ΔP = f(L/D)(ρV²/2)
+7. **Check dimensions** and reasonableness
+8. **Verify units** in final answer
+
+---
+
+**Revision Strategy:**
+1. **Days 1-3:** Learn fundamentals (density, pressure, viscosity)
+2. **Days 4-6:** Master continuity & Bernoulli with numerical problems
+3. **Days 7-8:** Practice momentum & energy equations
+4. **Days 9-10:** Apply to pipe flow, pumps, open channels
+5. **Days 11-14:** Practice full-length problems and exams
+
+**Quick Reference Time:** 10-15 minutes per topic
+**Problem Solving Time:** 30-45 minutes per problem
+**Exam Pace:** ~2-3 minutes per MCQ, ~15-20 minutes per problem
+
+---
+
+*Updated: June 2026*
+*For: Undergraduate & Graduate Fluid Mechanics Courses, GATE Exams, Professional Engineering*

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reynolds Number Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.5;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    label {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    label span {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 0.4rem 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+    button {
+      margin-top: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    button.primary {
+      background: black;
+      color: white;
+    }
+    .results p {
+      margin: 0.25rem 0;
+    }
+    .muted {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .error {
+      color: #b00020;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 0.1rem 0.25rem;
+      border-radius: 0.25rem;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reynolds Number Calculator</h1>
+  <p class="muted">
+    For internal flow in a circular pipe. Uses
+    <code>Re = ρ V D / μ</code> and classifies the flow as laminar, transitional, or turbulent.
+  </p>
+
+  <div class="card">
+    <form id="re-form">
+      <label>
+        <span>Density ρ (kg/m³)</span>
+        <input type="number" id="rho" step="any" required />
+      </label>
+      <label>
+        <span>Velocity V (m/s)</span>
+        <input type="number" id="V" step="any" required />
+      </label>
+      <label>
+        <span>Pipe diameter D (m)</span>
+        <input type="number" id="D" step="any" required />
+      </label>
+      <label>
+        <span>Dynamic viscosity μ (Pa·s)</span>
+        <input type="number" id="mu" step="any" required />
+      </label>
+
+      <button type="submit" class="primary">Calculate Reynolds number</button>
+      <div id="error" class="error"></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Results</h2>
+    <div id="results" class="results">
+      <p class="muted">Enter values above and click “Calculate”.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Formula & criteria</h2>
+    <p>Reynolds number:</p>
+    <p><code>Re = (ρ · V · D) / μ</code></p>
+    <p>Flow regime (for pipe flow):</p>
+    <ul>
+      <li><code>Re &lt; 2300</code> → laminar</li>
+      <li><code>2300 ≤ Re ≤ 4000</code> → transitional</li>
+      <li><code>Re &gt; 4000</code> → turbulent</li>
+    </ul>
+  </div>
+
+  <script>
+    const form = document.getElementById('re-form');
+    const resultsDiv = document.getElementById('results');
+    const errorDiv = document.getElementById('error');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errorDiv.textContent = '';
+
+      const rho = parseFloat(document.getElementById('rho').value);
+      const V   = parseFloat(document.getElementById('V').value);
+      const D   = parseFloat(document.getElementById('D').value);
+      const mu  = parseFloat(document.getElementById('mu').value);
+
+      if ([rho, V, D, mu].some(v => !isFinite(v))) {
+        errorDiv.textContent = 'Please fill in all fields with numbers.';
+        resultsDiv.innerHTML = '';
+        return;
+      }
+      if ([rho, V, D, mu].some(v => v <= 0)) {
+        errorDiv.textContent = 'All inputs must be positive.';
+        resultsDiv.innerHTML = '';
+        return;
+      }
+
+      const Re = (rho * V * D) / mu;
+
+      let regime;
+      if (Re < 2300) {
+        regime = 'Laminar flow';
+      } else if (Re > 4000) {
+        regime = 'Turbulent flow';
+      } else {
+        regime = 'Transitional flow';
+      }
+
+      resultsDiv.innerHTML = `
+        <p><strong>Reynolds number:</strong> ${Re.toFixed(2)}</p>
+        <p><strong>Flow regime:</strong> ${regime}</p>
+        <hr />
+        <p><strong>Calculation steps</strong></p>
+        <p>Re = (ρ · V · D) / μ</p>
+        <p>Re = (${rho} kg/m³ × ${V} m/s × ${D} m) / (${mu} Pa·s)</p>
+        <p>Re = ${Re.toFixed(4)}</p>
+      `;
+    });
+  </script>
+</body>
+</html>

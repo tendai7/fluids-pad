@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fluid Mechanics Calculators</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 10px;
+      background: #f5f5f5;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .calc-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+    }
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      background: #1976d2;
+      color: white;
+    }
+    button:hover {
+      background: #125a9b;
+    }
+    .result {
+      margin-top: 10px;
+      padding: 8px 10px;
+      background: #eef6ff;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      white-space: pre-line;
+    }
+    .note {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Fluid Mechanics Calculators</h1>
+
+<!-- ───────── Reynolds Number Calculator ───────── -->
+<div class="calc-card">
+  <h2>Reynolds Number Calculator</h2>
+  <p class="note">
+    Assumes internal flow in a circular pipe. You can use either dynamic viscosity μ or
+    kinematic viscosity ν. Units must be consistent.
+  </p>
+  <div class="calc-grid">
+    <div>
+      <label for="re-rho">Density, ρ (kg/m³)</label>
+      <input id="re-rho" type="number" step="any" value="1000">
+    </div>
+    <div>
+      <label for="re-V">Mean velocity, V (m/s)</label>
+      <input id="re-V" type="number" step="any" value="1">
+    </div>
+    <div>
+      <label for="re-D">Diameter, D (m)</label>
+      <input id="re-D" type="number" step="any" value="0.05">
+    </div>
+    <div>
+      <label for="re-mu">Dynamic viscosity, μ (Pa·s) – leave blank if using ν</label>
+      <input id="re-mu" type="number" step="any">
+    </div>
+    <div>
+      <label for="re-nu">Kinematic viscosity, ν (m²/s) – leave blank if using μ</label>
+      <input id="re-nu" type="number" step="any">
+    </div>
+  </div>
+  <button onclick="calcRe()">Calculate Reynolds Number</button>
+  <div id="re-result" class="result"></div>
+</div>
+
+<!-- ───────── Darcy–Weisbach Pipe Pressure Drop ───────── -->
+<div class="calc-card">
+  <h2>Darcy–Weisbach Pressure Drop</h2>
+  <p class="note">
+    Uses Swamee–Jain equation for turbulent flow. Units: SI (m, kg, s, Pa).
+  </p>
+  <div class="calc-grid">
+    <div>
+      <label for="dw-rho">Density, ρ (kg/m³)</label>
+      <input id="dw-rho" type="number" step="any" value="1000">
+    </div>
+    <div>
+      <label for="dw-mu">Dynamic viscosity, μ (Pa·s)</label>
+      <input id="dw-mu" type="number" step="any" value="0.001">
+    </div>
+    <div>
+      <label for="dw-L">Pipe length, L (m)</label>
+      <input id="dw-L" type="number" step="any" value="10">
+    </div>
+    <div>
+      <label for="dw-D">Pipe diameter, D (m)</label>
+      <input id="dw-D" type="number" step="any" value="0.05">
+    </div>
+    <div>
+      <label for="dw-Q">Volumetric flow rate, Q (m³/s)</label>
+      <input id="dw-Q" type="number" step="any" value="0.002">
+    </div>
+    <div>
+      <label for="dw-eps">Roughness, ε (m)</label>
+      <input id="dw-eps" type="number" step="any" value="0.00015">
+    </div>
+  </div>
+  <button onclick="calcDarcy()">Calculate ΔP &amp; Head Loss</button>
+  <div id="dw-result" class="result"></div>
+</div>
+
+<script>
+  function calcRe() {
+    const rho = parseFloat(document.getElementById('re-rho').value);
+    const V   = parseFloat(document.getElementById('re-V').value);
+    const D   = parseFloat(document.getElementById('re-D').value);
+    const mu  = parseFloat(document.getElementById('re-mu').value);
+    const nu  = parseFloat(document.getElementById('re-nu').value);
+
+    let Re;
+    if (!isNaN(mu) && mu > 0) {
+      // Re = ρ V D / μ
+      Re = rho * V * D / mu;
+    } else if (!isNaN(nu) && nu > 0) {
+      // Re = V D / ν
+      Re = V * D / nu;
+    } else {
+      document.getElementById('re-result').textContent =
+        'Please enter either μ or ν (one of them must be positive).';
+      return;
+    }
+
+    let regime;
+    if (Re < 2300) {
+      regime = 'Laminar';
+    } else if (Re < 4000) {
+      regime = 'Transitional';
+    } else {
+      regime = 'Turbulent';
+    }
+
+    document.getElementById('re-result').textContent =
+      `Re = ${Re.toExponential(3)}\nFlow regime: ${regime}`;
+  }
+
+  function calcDarcy() {
+    const rho = parseFloat(document.getElementById('dw-rho').value);
+    const mu  = parseFloat(document.getElementById('dw-mu').value);
+    const L   = parseFloat(document.getElementById('dw-L').value);
+    const D   = parseFloat(document.getElementById('dw-D').value);
+    const Q   = parseFloat(document.getElementById('dw-Q').value);
+    const eps = parseFloat(document.getElementById('dw-eps').value);
+    const g   = 9.81;
+
+    if ([rho, mu, L, D, Q, eps].some(v => isNaN(v) || v <= 0)) {
+      document.getElementById('dw-result').textContent =
+        'Please enter positive values for all inputs.';
+      return;
+    }
+
+    const A = Math.PI * D * D / 4.0;
+    const V = Q / A;
+    const Re = rho * V * D / mu;
+
+    let f;
+    if (Re < 2000) {
+      // Laminar exact: f = 64 / Re
+      f = 64 / Re;
+    } else {
+      // Swamee–Jain explicit formula for turbulent flow
+      const term = eps / (3.7 * D) + 5.74 / Math.pow(Re, 0.9);
+      f = 0.25 / Math.pow(Math.log10(term), 2);
+    }
+
+    const dp = f * (L / D) * 0.5 * rho * V * V;  // ΔP (Pa)
+    const hf = dp / (rho * g);                   // head loss (m)
+
+    const text =
+      `Re = ${Re.toExponential(3)}\n` +
+      `Friction factor, f ≈ ${f.toFixed(4)}\n` +
+      `Pressure drop, ΔP ≈ ${dp.toFixed(1)} Pa\n` +
+      `Head loss, h_f ≈ ${hf.toFixed(3)} m`;
+
+    document.getElementById('dw-result').textContent = text;
+  }
+</script>
+
+</body>
+</html>

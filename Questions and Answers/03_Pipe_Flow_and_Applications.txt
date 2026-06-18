@@ -1,0 +1,395 @@
+# Fluid Mechanics: Pipe Flow & Applied Topics - Q&A
+
+## 1. PIPE FLOW - LAMINAR VS TURBULENT
+
+### Q1: For laminar flow through a circular pipe, derive the velocity profile and find maximum velocity.
+**A:**
+**Setup:**
+- Steady, incompressible, fully developed laminar flow
+- Pressure drop over length L: ΔP = P₁ - P₂
+
+**Navier-Stokes Solution:**
+For fully developed laminar flow in pipe (r-direction, considering shear):
+
+τ = μ(du/dy) and pressure drives flow
+
+**Result - Poiseuille's Law:**
+- Velocity profile: u(r) = (ΔP/4μL)(R² - r²)
+  - R = pipe radius
+  - r = radial distance from center
+  
+- **Maximum velocity (at center, r=0):**
+  u_max = ΔPR²/(4μL)
+
+- **Parabolic profile:** Velocity varies as (1 - r²/R²)
+
+- **Average velocity:**
+  u_avg = u_max/2 = ΔPR²/(8μL)
+
+### Q2: What is the friction factor? How does it differ for laminar and turbulent flow?
+**A:**
+**Definition of Friction Factor (f):**
+- f = (ΔP) × (D) / (L × ρV²/2)
+- Dimensionless number measuring friction resistance
+- Used to calculate pressure drop in pipes
+
+**For Laminar Flow (Re < 2300):**
+- **f = 64/Re**
+- Independent of surface roughness
+- Decreases with increasing Reynolds number
+- **Example:** Re = 1000 → f = 64/1000 = 0.064
+
+**For Turbulent Flow (Re > 4000):**
+- **Colebrook-White equation (implicit):**
+  1/√f = -2 log(ε/3.7D + 2.51/Re√f)
+  - ε = absolute roughness of pipe
+  - D = pipe diameter
+  
+- **Approximation - Blasius equation (smooth pipes):**
+  f = 0.316 / Re^0.25 (for Re up to 100,000)
+  
+- **Moody Diagram:** Graphical solution for f vs Re and relative roughness
+
+**Key Differences:**
+| Property | Laminar | Turbulent |
+|----------|---------|-----------|
+| Formula | f = 64/Re | Depends on roughness |
+| Trend | f decreases with Re | f decreases weakly |
+| Roughness effect | No | Significant |
+| Pressure drop | Lower | Much higher |
+
+### Q3: Water flows through a 0.05 m diameter smooth pipe at 2 m/s. Find friction factor and pressure drop over 100 m.
+**A:**
+**Given:** D = 0.05 m, V = 2 m/s, L = 100 m, ρ = 1000 kg/m³, ν = 10⁻⁶ m²/s
+
+**Step 1: Calculate Reynolds number**
+- Re = VD/ν = (2 × 0.05)/(10⁻⁶) = 0.1/10⁻⁶ = **100,000**
+- Flow is **TURBULENT** (Re > 4000)
+
+**Step 2: Find friction factor (Blasius equation for smooth pipe)**
+- f = 0.316/Re^0.25 = 0.316/100,000^0.25
+- 100,000^0.25 = (10⁵)^0.25 = 10^1.25 ≈ 17.78
+- f = 0.316/17.78 = **0.0178**
+
+**Step 3: Calculate pressure drop (Darcy-Weisbach)**
+- ΔP = f(L/D)(ρV²/2)
+- ΔP = 0.0178 × (100/0.05) × (1000 × 2²/2)
+- ΔP = 0.0178 × 2000 × 2000
+- ΔP = 0.0178 × 4,000,000
+- **ΔP = 71,200 Pa ≈ 71.2 kPa**
+
+**Observation:** Pressure drop scales with L and V²
+
+### Q4: What is fully developed flow? At what distance does it occur?
+**A:**
+**Definition:**
+- Velocity profile becomes constant along the pipe
+- No change in velocity profile shape in flow direction
+- ∂u/∂x = 0 (no acceleration in flow direction)
+
+**Entrance Length (distance to reach fully developed):**
+- **For laminar flow:**
+  L_e/D ≈ 0.05 × Re
+  - Example: Re = 1000 → L_e ≈ 50D
+  - For D = 0.05 m → L_e ≈ 2.5 m
+
+- **For turbulent flow:**
+  L_e/D ≈ 4.4 × Re^(1/6)
+  - Much shorter relative to laminar
+  - Example: Re = 100,000 → L_e ≈ 25D
+  - For D = 0.05 m → L_e ≈ 1.25 m
+
+**Practical Implication:**
+- In long pipes, flow becomes fully developed
+- In short pipes, entrance effects significant
+- Higher Re → shorter entrance length (relative to D)
+
+---
+
+## 2. HEAD LOSS IN PIPES
+
+### Q5: What are the types of head loss in pipe systems? Explain major and minor losses.
+**A:**
+
+**Total Head Loss = Major Loss + Minor Loss**
+
+**Major Loss (Friction Loss):**
+- Due to friction between fluid and pipe walls in straight sections
+- Formula: h_f = f(L/D)(V²/2g)
+- Increases with:
+  - Pipe length (L)
+  - Friction factor (f)
+  - Velocity squared (V²)
+- Decreases with:
+  - Pipe diameter (D)
+
+**Minor Losses:**
+- Due to flow disturbances (bends, valves, fittings, entrance, exit)
+- Formula: h_m = K(V²/2g)
+  - K = loss coefficient (depends on type of fitting)
+- Examples:
+  - Sudden expansion: K ≈ (1 - A₁/A₂)²
+  - Sudden contraction: K ≈ 0.4 (typical)
+  - 90° elbow: K ≈ 0.9
+  - Fully open valve: K ≈ 0
+  - Pipe entrance: K ≈ 0.5
+  - Pipe exit: K = 1.0
+
+### Q6: A water pipe system has:
+- Straight section: L = 500 m, D = 0.1 m, f = 0.025
+- One 90° elbow: K = 0.9
+- Entrance loss: K = 0.5
+- Velocity: V = 3 m/s
+
+Find total head loss.
+
+**A:**
+**Given:** L = 500 m, D = 0.1 m, f = 0.025, V = 3 m/s, g = 9.81 m/s²
+
+**Calculate velocity head:**
+- V²/2g = 3²/(2 × 9.81) = 9/19.62 = 0.459 m
+
+**Major Loss (friction):**
+- h_f = f(L/D)(V²/2g) = 0.025 × (500/0.1) × 0.459
+- h_f = 0.025 × 5000 × 0.459 = **57.4 m**
+
+**Minor Losses:**
+- Entrance: h_entrance = 0.5 × 0.459 = 0.23 m
+- Elbow: h_elbow = 0.9 × 0.459 = 0.41 m
+- Total minor: h_minor = 0.23 + 0.41 = **0.64 m**
+
+**Total Head Loss:**
+- h_total = h_f + h_minor = 57.4 + 0.64 = **58.04 m**
+
+**Observation:** Friction loss dominates (98.9% of total); minor losses only 1.1%
+
+---
+
+## 3. PUMPS AND TURBINES
+
+### Q7: A pump delivers water at 0.05 m³/s from a reservoir at elevation 10 m to elevation 50 m. Pressure at discharge = 200 kPa (gauge). Find pump power required (neglect friction).
+
+**A:**
+**Energy Equation for Pump:**
+- W_pump = ṁg(z₂ - z₁) + ṁ(P₂ - P₁)/ρ + ṁ(V₂² - V₁²)/2
+
+**Given:**
+- Q = 0.05 m³/s
+- z₁ = 10 m, z₂ = 50 m
+- P₁ = 0 (gauge), P₂ = 200 kPa = 200,000 Pa
+- V₁ ≈ V₂ (assume, large reservoirs)
+- ρ = 1000 kg/m³
+- ṁ = ρQ = 1000 × 0.05 = 50 kg/s
+
+**Calculate:**
+1. Elevation work: W_elevation = ṁg(z₂ - z₁) = 50 × 9.81 × 40 = 19,620 W
+
+2. Pressure work: W_pressure = ṁ(P₂ - P₁)/ρ = 50 × 200,000/1000 = 10,000 W
+
+3. Kinetic energy work: W_kinetic ≈ 0 (velocities equal)
+
+**Total Pump Power:**
+- W_pump = 19,620 + 10,000 = **29,620 W ≈ 29.6 kW**
+
+**Alternative formula:**
+- W = ρgQ(Δz) + QΔP
+- W = 1000 × 9.81 × 0.05 × 40 + 0.05 × 200,000
+- W = 19,620 + 10,000 = 29,620 W ✓
+
+---
+
+## 4. DIMENSIONAL ANALYSIS
+
+### Q8: What is dimensional analysis? What is its importance in fluid mechanics?
+**A:**
+**Definition:**
+- Mathematical technique using dimensional homogeneity
+- Every equation must have consistent dimensions on both sides
+- Reduces number of variables through dimensionless groups
+
+**Primary Dimensions:**
+- M (mass), L (length), T (time)
+- Force: F = MLT⁻²
+- Pressure: P = ML⁻¹T⁻²
+- Viscosity: μ = ML⁻¹T⁻¹
+
+**Importance:**
+1. **Reduces variables:** If n variables with m dimensions → (n-m) dimensionless groups
+2. **Scaling laws:** Allows model testing and extrapolation
+3. **Correlation:** Helps identify relationships between variables
+4. **Checks:** Validates equations for dimensional correctness
+
+### Q9: The drag force on an object moving through a fluid depends on:
+- Velocity (V)
+- Size (D)
+- Fluid density (ρ)
+- Fluid viscosity (μ)
+
+Use dimensional analysis to find the functional form.
+
+**A:**
+**Setup:**
+- F_drag = function(V, D, ρ, μ)
+- Number of variables: n = 5
+- Fundamental dimensions: m = 3 (M, L, T)
+- Dimensionless groups: 5 - 3 = 2
+
+**Assume:**
+- F_D = C × V^a × D^b × ρ^c × μ^d
+
+**Dimensional equation:**
+- [F_D] = [V]^a × [D]^b × [ρ]^c × [μ]^d
+- MLT⁻² = (LT⁻¹)^a × L^b × (ML⁻³)^c × (ML⁻¹T⁻¹)^d
+
+**Matching exponents:**
+- M: 1 = c + d
+- L: 1 = a + b - 3c - d
+- T: -2 = -a - d
+
+**Solution:**
+- From T equation: a + d = 2
+- From M equation: c + d = 1, so c = 1 - d
+- From L: a + b - 3(1-d) - d = 1
+- This gives: a = 2, d = 0, c = 1, b = 2
+
+**Result:**
+- **F_D = C × ρ × V² × D²**
+
+**Dimensionless form:**
+- C_D = F_D / (ρV²D²/2)
+- This is the **drag coefficient** (fundamental dimensionless number)
+
+### Q10: List common dimensionless numbers in fluid mechanics and their significance.
+**A:**
+
+| Dimensionless Number | Definition | Significance |
+|----------------------|------------|--------------|
+| **Reynolds (Re)** | ρVD/μ | Inertial/Viscous forces; laminar vs turbulent |
+| **Froude (Fr)** | V/√(gD) | Inertial/Gravity forces; wave formation |
+| **Mach (M)** | V/a | Velocity/Speed of sound; compressibility |
+| **Strouhal (St)** | fD/V | Oscillation frequency in flow |
+| **Drag Coefficient (C_D)** | F_D/(ρV²A/2) | Aerodynamic drag |
+| **Lift Coefficient (C_L)** | F_L/(ρV²A/2) | Aerodynamic lift |
+| **Pressure Coefficient (C_p)** | (P-P_∞)/(ρV²/2) | Pressure distribution |
+| **Nusselt (Nu)** | hD/k | Convective heat transfer |
+| **Prandtl (Pr)** | μc_p/k | Fluid property ratio |
+| **Grashof (Gr)** | gβΔTD³/ν² | Natural convection |
+
+---
+
+## 5. FLOW AROUND OBJECTS
+
+### Q11: What are drag and lift forces? Explain the components of drag.
+**A:**
+
+**Drag Force (F_D):**
+- Resistance force in direction of flow
+- Coefficient: C_D = F_D / (ρV²A/2)
+- Typical values: C_D = 0.1-2.0 depending on shape
+
+**Lift Force (F_L):**
+- Force perpendicular to flow direction
+- Coefficient: C_L = F_L / (ρV²A/2)
+- Occurs on curved surfaces (airfoils) due to pressure difference
+
+**Components of Drag:**
+
+1. **Pressure Drag (Form Drag):**
+   - Due to pressure difference between front and rear
+   - Dominant at high Re (turbulent)
+   - Increases with bluff shape
+   
+2. **Skin Friction Drag (Viscous Drag):**
+   - Due to shear stress at surface
+   - Dominant at low Re (laminar)
+   - Increases with surface area
+   
+3. **Wave Drag (at surfaces):**
+   - Due to wave formation (liquid surfaces, compressible flow)
+   - Relevant for ships and high-speed vehicles
+
+**Total Drag:**
+- C_D(total) = C_D(pressure) + C_D(friction)
+
+**Examples:**
+- Smooth sphere: C_D ≈ 0.47 (Re > 1000)
+- Cylinder: C_D ≈ 1.2
+- Car: C_D ≈ 0.3
+- Flat plate: C_D ≈ 1.3
+
+---
+
+## 6. OPEN CHANNEL FLOW
+
+### Q12: Define critical depth and critical slope in open channel flow.
+**A:**
+
+**Critical Depth (y_c):**
+- Depth at which specific energy is minimum for given flow rate
+- Flow transitions from subcritical to supercritical
+- Froude number: Fr = 1 at critical depth
+- Formula (rectangular channel):
+  y_c = ∛(q²/g)
+  - q = Q/b = discharge per unit width
+  - g = gravity
+  
+**Critical Slope (S_c):**
+- Channel slope at which uniform flow occurs at critical depth
+- Flow is neither subcritical nor supercritical
+- Formula: S_c = (n²g)/R_h^(1/3)
+  - n = Manning's roughness coefficient
+  - R_h = hydraulic radius
+
+**Flow Classifications:**
+| Condition | Slope Type | Flow Type | Fr |
+|-----------|-----------|-----------|-----|
+| S > S_c | Steep | Supercritical | Fr > 1 |
+| S = S_c | Critical | Critical | Fr = 1 |
+| S < S_c | Mild | Subcritical | Fr < 1 |
+
+### Q13: What is a hydraulic jump? Where does it occur?
+**A:**
+**Definition:**
+- Sudden, turbulent transition from supercritical to subcritical flow
+- Rapid rise in water surface
+- Significant energy dissipation
+
+**Where it Occurs:**
+1. Downstream of spillway gates (rapid flow at bottom)
+2. Below sluice gates in canals
+3. Where high-speed flow meets obstruction
+4. Toe of dams
+
+**Energy Loss in Jump:**
+- Large amount of kinetic energy → heat, turbulence, noise
+- Can dissipate 30-80% of kinetic energy
+- Useful for energy dissipation (reduces erosion downstream)
+
+**Jump Relations:**
+For rectangular channel, if depths before (y₁) and after (y₂):
+- y₂/y₁ = 0.5[√(1 + 8Fr₁²) - 1]
+  - Fr₁ = V₁/√(gy₁) = Froude number before jump
+
+---
+
+## COMPREHENSIVE PRACTICE PROBLEMS
+
+**Problem 1:** Oil flows through a pipe system:
+- Supply at 0 m elevation, 0 kPa gauge
+- Delivery at 30 m elevation, 500 kPa gauge
+- Flow rate: 0.02 m³/s
+- Total minor losses coefficient: 5.5
+- Pipe friction factor: 0.02, diameter: 0.05 m, length: 200 m
+Find required pump power.
+
+**Problem 2:** A 90° bend in an air duct carries 0.5 m³/s at 10 m/s. Find:
+- Force required to support the bend
+- Pressure drop across the bend (K = 0.9)
+
+**Problem 3:** Design a pipe to deliver 0.1 m³/s with maximum pressure drop of 50 kPa over 500 m. Find minimum diameter.
+
+---
+
+**Source:** MIT OCW (2.06, 2.25), Sanfoundry, UC Berkeley ME 106, GATE exam papers
+**Difficulty:** Intermediate to Advanced
+**Applications:** Engineering design, competitive exams, pump/turbine sizing

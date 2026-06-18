@@ -1,0 +1,322 @@
+# Fluid Mechanics: Continuity, Bernoulli & Momentum - Q&A
+
+## 1. CONTINUITY EQUATION (EQUATION OF CONTINUITY)
+
+### Q1: State the continuity equation. What physical principle does it represent?
+**A:**
+- **Physical Principle:** Conservation of mass - mass cannot be created or destroyed
+- **Continuity Equation (General Form):**
+  ∂ρ/∂t + ∇·(ρV) = 0
+  
+**For Incompressible Flow (constant density):**
+  A₁V₁ = A₂V₂ = Q (constant)
+  - A = cross-sectional area
+  - V = velocity
+  - Q = volumetric flow rate (m³/s)
+
+### Q2: A pipe reduces from diameter 0.1 m to 0.05 m. If velocity in large pipe is 2 m/s, find velocity in small pipe.
+**A:**
+- Given: D₁ = 0.1 m, D₂ = 0.05 m, V₁ = 2 m/s
+- Find: V₂ = ?
+
+**Solution:**
+- A₁V₁ = A₂V₂
+- (πD₁²/4)V₁ = (πD₂²/4)V₂
+- D₁²V₁ = D₂²V₂
+- (0.1)² × 2 = (0.05)² × V₂
+- 0.01 × 2 = 0.0025 × V₂
+- V₂ = 0.02 / 0.0025 = **8 m/s**
+
+**Observation:** As area decreases, velocity increases (V₂ > V₁)
+
+### Q3: What is volumetric flow rate and mass flow rate? How are they related?
+**A:**
+- **Volumetric Flow Rate (Q):**
+  - Volume of fluid flowing per unit time
+  - Units: m³/s or L/s
+  - Formula: Q = A × V = ∫V·dA
+  
+- **Mass Flow Rate (ṁ):**
+  - Mass of fluid flowing per unit time
+  - Units: kg/s
+  - Formula: ṁ = ρ × Q = ρ × A × V
+  
+- **Relationship:**
+  - For incompressible flow: ṁ is constant along streamline
+  - For compressible flow: Must account for density changes
+
+**Example:**
+- Water flow: Q = 0.1 m³/s, ρ = 1000 kg/m³
+- ṁ = 1000 × 0.1 = **100 kg/s**
+
+### Q4: For steady flow through a control volume with multiple inlets and outlets, write the continuity equation.
+**A:**
+- **General Continuity Equation for Control Volume:**
+  
+  Σ(ṁ_in) = Σ(ṁ_out)
+  
+  or
+  
+  Σ(ρₙAₙVₙ)_in = Σ(ρₙAₙVₙ)_out
+
+**Example Problem:**
+- Inlet 1: A₁ = 0.05 m², V₁ = 3 m/s
+- Inlet 2: A₂ = 0.03 m², V₂ = 2 m/s
+- Outlet: A₃ = 0.06 m², V₃ = ?
+- ρ = constant = 1000 kg/m³
+
+**Solution:**
+- ρ₁A₁V₁ + ρ₂A₂V₂ = ρ₃A₃V₃
+- 1000(0.05×3 + 0.03×2) = 1000 × 0.06 × V₃
+- 0.15 + 0.06 = 0.06 × V₃
+- V₃ = 0.21 / 0.06 = **3.5 m/s**
+
+---
+
+## 2. BERNOULLI'S EQUATION
+
+### Q5: State Bernoulli's equation. Explain each term.
+**A:**
+- **Bernoulli's Equation (along a streamline):**
+  P/ρg + V²/2g + z = constant
+  
+**Or in terms of energy per unit mass:**
+  P/ρ + V²/2 + gz = constant
+
+**Terms and their meaning:**
+1. **P/ρg** = Pressure head (meters)
+   - Energy due to pressure
+   
+2. **V²/2g** = Velocity head or dynamic head (meters)
+   - Kinetic energy per unit weight
+   - Increases when fluid accelerates
+   
+3. **z** = Elevation head (meters)
+   - Potential energy per unit weight
+   - Increases with height
+
+4. **Total Head (H)** = P/ρg + V²/2g + z
+   - Constant along a streamline in ideal flow
+
+**Units:** All terms in meters of fluid (energy per unit weight)
+
+### Q6: What are the assumptions in Bernoulli's equation?
+**A:**
+1. **No friction** (no viscous losses) - ideal fluid assumption
+2. **Incompressible flow** (constant density)
+3. **Steady flow** (properties don't change with time)
+4. **Flow along a streamline** (equation applies along one streamline)
+5. **No work done on or by fluid** (except pressure work)
+6. **No heat transfer** or uniform temperature
+
+**Reality Check:** Real flows violate assumption 1. Use modified form:
+- P₁/ρg + V₁²/2g + z₁ = P₂/ρg + V₂²/2g + z₂ + h_L
+- h_L = energy loss due to friction
+
+### Q7: A horizontal pipe carries water. Pressure drops from 300 kPa to 100 kPa. Find the velocity change.
+**A:**
+- Given: P₁ = 300 kPa, P₂ = 100 kPa, z₁ = z₂ (horizontal)
+- Find: V₂ - V₁
+
+**Using Bernoulli's equation (ideal flow):**
+- P₁/ρg + V₁²/2g = P₂/ρg + V₂²/2g
+- (P₁ - P₂)/ρg = (V₂² - V₁²)/2g
+- (P₁ - P₂) = ρ(V₂² - V₁²)/2
+
+**Calculation:**
+- ρ = 1000 kg/m³, g = 9.81 m/s²
+- (300,000 - 100,000) = 1000(V₂² - V₁²)/2
+- 200,000 = 500(V₂² - V₁²)
+- V₂² - V₁² = 400
+- If V₁ = 0 (or negligible): **V₂ = 20 m/s**
+
+### Q8: Water flows from a large tank through a nozzle. Tank surface is 2 m above nozzle exit. Find exit velocity (ideal flow).
+**A:**
+- Given: z₁ = 2 m (tank surface), z₂ = 0 (nozzle exit)
+- Large tank: V₁ ≈ 0
+- P₁ = P₂ = P_atm (both open to atmosphere)
+
+**Using Bernoulli:**
+- P₁/ρg + V₁²/2g + z₁ = P₂/ρg + V₂²/2g + z₂
+- 0 + 0 + 2 = 0 + V₂²/2g + 0
+- z₁ = V₂²/2g
+- V₂² = 2gz₁ = 2 × 9.81 × 2
+- V₂ = √39.24 = **6.26 m/s**
+
+### Q9: What is pressure recovery and pressure distribution around a cylinder?
+**A:**
+- **Pressure Distribution:**
+  - Front stagnation point: Maximum pressure
+  - Top and bottom: Lower pressure (higher velocity)
+  - Rear: Pressure increases but less than front (flow separation)
+  
+- **Pressure Coefficient (C_p):**
+  - C_p = (P - P_∞)/(0.5ρV_∞²)
+  - Dimensionless measure of pressure
+  - Front point: C_p = 1 (stagnation point)
+  - Maximum velocity: C_p = -1 (negative pressure)
+
+- **Pressure Recovery:**
+  - Pressure should increase from velocity maximum back to stagnation
+  - In real flow: Pressure recovery incomplete due to viscous effects
+  - Explains drag force on cylinder
+
+---
+
+## 3. MOMENTUM EQUATION
+
+### Q10: State the momentum equation. What physical principle does it represent?
+**A:**
+- **Physical Principle:** Newton's second law applied to fluid flow
+  F = ma → Force = Rate of change of momentum
+
+**Momentum Equation (for control volume):**
+  ΣF = ṁ_out × V_out - ṁ_in × V_in
+  
+**Or in vector form:**
+  ΣF = Σ(ṁV)_out - Σ(ṁV)_in
+
+**Types of forces:**
+1. Pressure forces (pressure on control volume surface)
+2. Weight (gravity)
+3. Reaction forces (from pipes, supports)
+4. Shear forces (friction)
+
+### Q11: Water jet hits a flat plate. Jet velocity = 10 m/s, jet diameter = 0.05 m. Find force on plate (water density = 1000 kg/m³).
+**A:**
+- Given: V = 10 m/s, D = 0.05 m, ρ = 1000 kg/m³
+- Jet hits plate and deflects (assume 90° deflection downward)
+
+**Solution:**
+**Step 1:** Calculate flow rate
+- A = πD²/4 = π(0.05)²/4 = 0.001963 m²
+- Q = A × V = 0.001963 × 10 = 0.01963 m³/s
+- ṁ = ρQ = 1000 × 0.01963 = 19.63 kg/s
+
+**Step 2:** Apply momentum equation
+- Initial momentum: V_in = 10 m/s (horizontal)
+- Final momentum: V_out = 0 (horizontal component)
+- Change in momentum: ṁΔV = 19.63 × 10
+
+**Force on plate:**
+- **F = 196.3 N** (in direction of original jet)
+
+### Q12: Nozzle reduces pipe diameter from D₁ to D₂. Find thrust force on nozzle.
+**A:**
+- **Setup:** Steady flow, pressure at both ends = P_atm
+
+**Momentum equation:**
+- F_thrust = ṁ(V₂ - V₁) = ρAV(V₂ - V₁)
+
+**From continuity:**
+- A₁V₁ = A₂V₂
+- V₂ = V₁(A₁/A₂) = V₁(D₁/D₂)²
+
+**Force expression:**
+- F = ρA₁V₁²[(D₁/D₂)² - 1]
+
+**Example:**
+- D₁ = 0.1 m, D₂ = 0.05 m, V₁ = 2 m/s, ρ = 1000 kg/m³
+- A₁ = π(0.1)²/4 = 0.00785 m²
+- V₂ = 2 × (0.1/0.05)² = 2 × 4 = 8 m/s
+- F = 1000 × 0.00785 × 2² × (4 - 1) = 1000 × 0.00785 × 4 × 3
+- **F ≈ 94.2 N**
+
+### Q13: A bend in a pipe: water flows at 3 m/s, pipe diameter 0.1 m, 90° bend. Find force on bend.
+**A:**
+- Given: V = 3 m/s, D = 0.1 m, θ = 90°, ρ = 1000 kg/m³
+
+**Solution:**
+**Step 1:** Flow rate and mass flow
+- A = π(0.1)²/4 = 0.00785 m²
+- Q = 3 × 0.00785 = 0.02356 m³/s
+- ṁ = 1000 × 0.02356 = 23.56 kg/s
+
+**Step 2:** Velocity change (components)
+- V₁ = 3 m/s (horizontal), V₂ = 3 m/s (vertical)
+- Change in velocity (vector): ΔV = √(3² + 3²) = 4.24 m/s
+
+**Step 3:** Force calculation
+- F = ṁ × ΔV = 23.56 × 4.24 = **99.9 N ≈ 100 N**
+- Direction: 45° to original flow
+
+---
+
+## 4. EULER'S EQUATION
+
+### Q14: Derive and explain Euler's equation of motion.
+**A:**
+- **Euler's Equation:** Applies Newton's second law to fluid element
+  
+  For incompressible flow along streamline:
+  (1/ρ)(dP/ds) + (d/ds)(V²/2) + g(dz/ds) = 0
+  
+  Or: (1/ρ)dP + VdV + gdz = 0
+
+**Integration gives Bernoulli's equation**
+
+**Physical meaning:**
+- Pressure gradient accelerates fluid
+- Change in kinetic energy and potential energy accompany pressure change
+- Valid for ideal (frictionless) flow
+
+---
+
+## 5. ENERGY EQUATION
+
+### Q15: State the first law of thermodynamics for flow systems (Energy Equation).
+**A:**
+**Energy Equation (per unit mass):**
+- P₁/ρ + V₁²/2 + gz₁ + q - w = P₂/ρ + V₂²/2 + gz₂ + (loss)
+
+**Where:**
+- P/ρ = pressure energy
+- V²/2 = kinetic energy
+- gz = potential energy
+- q = heat added to system
+- w = work done by system
+- loss = energy loss due to friction
+
+**Special cases:**
+1. **No heat (q=0), no work (w=0):** Bernoulli's equation (ideal)
+2. **With friction loss (h_L):**
+   - P₁/ρg + V₁²/2g + z₁ = P₂/ρg + V₂²/2g + z₂ + h_L
+
+### Q16: Pump delivers 0.1 m³/s of water. Inlet pressure = 0 (gauge), outlet pressure = 300 kPa. Find pump power input (assume no friction).
+**A:**
+- Given: Q = 0.1 m³/s, P₁ = 0, P₂ = 300 kPa, ρ = 1000 kg/m³
+
+**Power calculation:**
+- Power = (P₂ - P₁) × Q
+- Power = 300,000 Pa × 0.1 m³/s
+- Power = **30,000 W = 30 kW**
+
+**Alternative (using energy per unit mass):**
+- Work = (P₂ - P₁)/ρ = 300,000/1000 = 300 J/kg
+- Power = ṁ × work = (ρQ) × work = 1000 × 0.1 × 300
+- Power = **30,000 W = 30 kW**
+
+---
+
+## SUMMARY TABLE: Three Key Equations
+
+| Equation | Principle | Form | Valid For | Notes |
+|----------|-----------|------|-----------|-------|
+| **Continuity** | Mass conservation | ρ₁A₁V₁ = ρ₂A₂V₂ | All flows | Fundamental principle |
+| **Bernoulli** | Energy conservation | P/ρg + V²/2g + z = C | Ideal flow | Frictionless, incompressible |
+| **Momentum** | Force = rate of change of momentum | F = ṁ(V₂ - V₁) | All flows | Includes pressure forces |
+
+---
+
+## PRACTICE PROBLEM SET
+
+**Problem 1:** Oil (ν = 10⁻⁴ m²/s, ρ = 800 kg/m³) flows through a 0.05 m diameter pipe at 2 m/s. Find Reynolds number and flow type.
+
+**Problem 2:** A siphon starts at height 1 m above water level. At exit (1 m below surface), find exit velocity.
+
+**Problem 3:** Compressor inlet: P₁ = 100 kPa, V₁ = 50 m/s, A₁ = 0.01 m². Exit: P₂ = 500 kPa, V₂ = 150 m/s, A₂ = 0.003 m². Find pressure and velocity drag on compressor.
+
+---
+
+**Source:** MIT OCW (2.06, 2.25), Sanfoundry, UC Berkeley ME 106
+**Difficulty:** Intermediate (suitable for competitive exams and coursework)
